@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="lib" path="lib/base/core/ant-launcher.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/base/core"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/base/core/ant.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/base/core"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/base/core/core.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/base/core"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/user/peasycam/peasycam.jar" sourcepath="C:/Users/srou.UNIMELB/Documents/Processing/libraries/peasycam/src">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/user/peasycam"/>
+			<attribute name="javadoc_location" value="file:/C:/Users/srou.UNIMELB/Documents/Processing/libraries/peasycam/reference/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/user/simutils/simutils.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/user/simutils"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/user/toxiclibscore/toxiclibscore.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/user/toxiclibscore"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
