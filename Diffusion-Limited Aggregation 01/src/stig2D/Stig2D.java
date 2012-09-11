@@ -1,4 +1,4 @@
-package dlt;
+package stig2D;
 
 import processing.core.PApplet;
 import processing.core.PVector;
