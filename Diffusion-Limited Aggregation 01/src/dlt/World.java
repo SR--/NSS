@@ -4,12 +4,12 @@ import processing.core.PImage;
 
 public class World {
 
-	DLT p5;
+	Stig2D p5;
 	PImage loadedImage; // image to store
 	float[][] vals;
 	int w, h;
 
-	World(DLT p5, String toImg){
+	World(Stig2D p5, String toImg){
 
 		this.p5 = p5;
 		loadedImage = p5.loadImage(toImg); //load the source image
@@ -57,12 +57,12 @@ public class World {
 
 	//write a new value to the image
 	void setAt(int x, int y, float v){
-		v = DLT.constrain(v, 0, 255);
+		v = Stig2D.constrain(v, 0, 255);
 		vals[x][y] = v;
 	}
 
 	void modAt(int x, int y, float v){
-		float mod = DLT.constrain(vals[x][y] + v, 0, 255);
+		float mod = Stig2D.constrain(vals[x][y] + v, 0, 255);
 		vals[x][y] = mod;
 	}
 
@@ -70,7 +70,7 @@ public class World {
 		p5.loadPixels();
 		for (int i = 0; i < w; i++){
 			for (int j = 0; j < h; j++){
-				float b= DLT.constrain(vals[i][j], 0, 255);
+				float b= Stig2D.constrain(vals[i][j], 0, 255);
 				p5.pixels[(j*w)+i] = p5.color(b);
 			}
 		}

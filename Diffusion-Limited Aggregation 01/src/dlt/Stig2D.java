@@ -6,7 +6,7 @@ import processing.core.PVector;
 import java.util.ArrayList;
 
 
-public class DLT extends PApplet {
+public class Stig2D extends PApplet {
 
 	World world;
 	ArrayList<Mover> pop = new ArrayList<Mover>();

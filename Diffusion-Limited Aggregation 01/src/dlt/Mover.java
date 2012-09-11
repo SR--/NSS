@@ -4,7 +4,7 @@ import processing.core.PVector;
 
 public class Mover {
 
-	DLT p5;
+	Stig2D p5;
 	PVector location;
 	PVector velocity;
 	PVector acceleration;
@@ -12,7 +12,7 @@ public class Mover {
 	float mass;
 	int c;
 
-	Mover(DLT p5, PVector location, PVector velocity, float mass){
+	Mover(Stig2D p5, PVector location, PVector velocity, float mass){
 
 		this.p5 = p5;
 		this.mass = mass;
@@ -79,10 +79,10 @@ public class Mover {
 			for (int j = -p5.searchRad; j <= p5.searchRad; j++){
 				if(!(i == 0 && j == 0)){
 					//checks for edges
-					int x = DLT.floor(location.x)+i;
-					x = DLT.constrain(x, 0, p5.width-1);
-					int y = DLT.floor(location.y)+j;
-					y = DLT.constrain(y, 0, p5.height-1);
+					int x = Stig2D.floor(location.x)+i;
+					x = Stig2D.constrain(x, 0, p5.width-1);
+					int y = Stig2D.floor(location.y)+j;
+					y = Stig2D.constrain(y, 0, p5.height-1);
 
 					//check to see if this is the smallest current value
 					//scale by the distance to the value
@@ -90,7 +90,7 @@ public class Mover {
 					PVector toV = new PVector(i, j);
 
 					//limit the angle of vision
-					if(PVector.angleBetween(toV,velocity)<DLT.PI/2){
+					if(PVector.angleBetween(toV,velocity)<Stig2D.PI/2){
 
 						//check to see if the current value is larger than 
 						//the current best
@@ -116,7 +116,7 @@ public class Mover {
 
 	void modWorld(){
 		//checks for edges
-		if(lastPos.x < p5.width-1 && lastPos.y < p5.height-1 && lastPos.x > 0 && lastPos.y > 0) p5.world.modAt(DLT.floor(lastPos.x), DLT.floor(lastPos.y), 50);
+		if(lastPos.x < p5.width-1 && lastPos.y < p5.height-1 && lastPos.x > 0 && lastPos.y > 0) p5.world.modAt(Stig2D.floor(lastPos.x), Stig2D.floor(lastPos.y), 50);
 	}
 
 }
