@@ -17,16 +17,20 @@ public class Stigmergy3D01 extends PApplet {
 	ArrayList<Agent> agents	= new ArrayList<Agent>();
 	LinkedList<Phero> pheros = new LinkedList<Phero>();
 	
-	int spawnLocs = 7; //how many locations to initiate agents from?
+	int spawnLocs = 70; //how many locations to initiate agents from?
 	
 	// ---------*Agent*---------------------------------------------//
 	
 	float sight	= 60f;
 	float view = 2.2f;
 	
+	//agent trail parameters
+	int dropSpacing = 2; //distance between trail points
+	int trailLength  = 200;
+	
 	// ---------*Pheromone*-----------------------------------------//
 	
-	float decayRate	= 0.1f;
+	float decayRate	= 1.0f;
 	float interval = 25f;
 
 	public void setup() {
@@ -39,16 +43,16 @@ public class Stigmergy3D01 extends PApplet {
 
 	public void draw() {
 		background(0, 0, 0);
-		renderBound();
+		//renderBound();
 		
 		// -----------------------------------colony function--------------//
 		for (int i = 0; i < colonys.size(); i++) {
 			Colony c = colonys.get(i);
 			c.update();
-			c.render();
+			//c.render();
 		}
 		
-		// -----------------------------------ant function-----------------//
+		// -----------------------------------agent function-----------------//
 		for (int i = 0; i < agents.size(); i++) {
 			Agent a = agents.get(i);
 			if (!a.alive) agents.remove(i);
@@ -67,7 +71,7 @@ public class Stigmergy3D01 extends PApplet {
 				itP.remove();
 			} else {
 				ph.decay();
-				ph.render();
+				//ph.render();
 			}
 		}
 	}

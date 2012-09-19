@@ -12,13 +12,14 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/base/core/core.jar">
 		<attributes>
+			<attribute name="javadoc_location" value="http://processing.googlecode.com/svn/trunk/processing/build/javadoc/core"/>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/base/core"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/user/peasycam/peasycam.jar" sourcepath="C:/Users/srou.UNIMELB/Documents/Processing/libraries/peasycam/src">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/user/peasycam"/>
 			<attribute name="javadoc_location" value="file:/C:/Users/srou.UNIMELB/Documents/Processing/libraries/peasycam/reference/"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/user/peasycam"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/user/simutils/simutils.jar">

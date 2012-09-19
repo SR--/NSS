@@ -1,5 +1,6 @@
 package stigmergy3d01;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import processing.core.PApplet;
 import toxi.geom.Vec3D;
@@ -16,13 +17,19 @@ public class Agent {
 	int	dir;
 	boolean	free = false;
 	float freetime = 0;
+	float dropNum;
+	Trail tr;
 
-	 Agent(Stigmergy3D01 p5, Vec3D pos) {
+	Agent(Stigmergy3D01 p5, Vec3D pos) {
 		this.p5 = p5;
 		this.pos = pos;
 		vel = new Vec3D(p5.random(-1, 1), p5.random(-1, 1), p5.random(-1, 1));
 		loc = pos.copy();
 		p5.agents.add(this);
+		
+		//control trails
+		dropNum = 0;
+		tr = new Trail(p5, this);;
 	}
 
 	void update() {
@@ -48,6 +55,8 @@ public class Agent {
 		vel.addSelf(acc);
 		vel.limit(maxV);
 		pos.addSelf(vel);
+
+		tr.update();
 	}
 
 	public Vec3D track(float s, float v) {
@@ -95,10 +104,8 @@ public class Agent {
 	}
 
 	public void render() {
-		if (!free) p5.stroke(15, 100, 80);
-		if (free) p5.stroke(310, 100, 100);
-		p5.strokeWeight(3);
-		p5.point(pos.x, pos.y, pos.z);
-	}
+		tr.renderTrail();
+		//tr.renderAgent();
 
+	}
 }

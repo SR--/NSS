@@ -10,9 +10,9 @@ public class Phero {
 	float	mag		= 100f;
 	boolean	alive	= true;
 
-	Phero(Stigmergy3D01 p5, Vec3D _pos) {
+	Phero(Stigmergy3D01 p5, Vec3D pos) {
 		this.p5 = p5;
-		pos = _pos;
+		this.pos = pos;
 	}
 
 	public void decay() {
