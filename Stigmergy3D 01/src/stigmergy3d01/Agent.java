@@ -25,7 +25,7 @@ public class Agent {
 		this.pos = pos;
 		vel = new Vec3D(p5.random(-1, 1), p5.random(-1, 1), p5.random(-1, 1));
 		loc = pos.copy();
-		p5.agents.add(this);
+		p5.manager.agents.add(this);
 		
 		//control trails
 		dropNum = 0;
@@ -45,7 +45,7 @@ public class Agent {
 			freetime--;
 		} else {
 			free = false;
-			trac = track(p5.sight, p5.view / 2);
+			trac = track(p5.manager.sight, p5.manager.view / 2);
 		}
 
 		trac.scaleSelf(3);
@@ -63,7 +63,7 @@ public class Agent {
 		// s = sight, v = view/2
 		Vec3D vec = new Vec3D();
 		float count = 0.0f;
-		Iterator<Phero> it = p5.pheros.iterator();
+		Iterator<Phero> it = p5.manager.pheros.iterator();
 		while (it.hasNext()) {
 			Phero ph = it.next();
 			float d = pos.distanceTo(ph.pos);
@@ -92,14 +92,14 @@ public class Agent {
 
 	public void make() {
 		boolean able = true;
-		Iterator<Phero> it = p5.pheros.iterator();
+		Iterator<Phero> it = p5.manager.pheros.iterator();
 		while (it.hasNext() && able) {
 			Phero ph = it.next();
 			if (pos.distanceTo(ph.pos) < 1) able = false;
 		}
-		int t = (int) (p5.interval / maxV);
-		if (p5.frameCount % t == 0 && pos.distanceTo(loc) > p5.interval && able) {
-			p5.pheros.add(new Phero(p5, pos.copy()));
+		int t = (int) (p5.manager.interval / maxV);
+		if (p5.frameCount % t == 0 && pos.distanceTo(loc) > p5.manager.interval && able) {
+			p5.manager.pheros.add(new Phero(p5, pos.copy()));
 		}
 	}
 

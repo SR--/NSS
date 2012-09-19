@@ -18,8 +18,8 @@ public class Trail {
 	
 	public void update() {
 		//update the trail geom every 5 moves
-		if(a.dropNum % p5.dropSpacing == 0){
-			if(trail.size() < p5.trailLength){
+		if(a.dropNum % p5.manager.dropSpacing == 0){
+			if(trail.size() < p5.manager.trailLength){
 				trail.add(new Vec3D(a.pos.x, a.pos.y, a.pos.z));
 			}else{
 				trail.remove(0);

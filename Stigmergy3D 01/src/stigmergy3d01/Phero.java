@@ -16,7 +16,7 @@ public class Phero {
 	}
 
 	public void decay() {
-		mag -= p5.decayRate;
+		mag -= p5.manager.decayRate;
 		if (mag < 0) alive = false;
 	}
 
