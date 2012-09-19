@@ -43,7 +43,7 @@ public class Manager {
 
 	// -----------------------------------colony function--------------//
 
-	public void makeColonies() {
+	public void runColonies() {
 		for (int i = 0; i < colonys.size(); i++) {
 			Colony c = colonys.get(i);
 			c.update();
@@ -53,7 +53,7 @@ public class Manager {
 
 	// -----------------------------------agent function-----------------//
 
-	public void makeAgents() {
+	public void runAgents() {
 		for (int i = 0; i < agents.size(); i++) {
 			Agent a = agents.get(i);
 			if (!a.alive) agents.remove(i);
@@ -66,7 +66,7 @@ public class Manager {
 	}
 
 	// -------------------------------pheromone function---------------//
-	public void makePhero() {
+	public void runPhero() {
 		Iterator<Phero> itP = pheros.iterator();
 		while (itP.hasNext()) {
 			Phero ph = itP.next();

@@ -30,9 +30,9 @@ public class Stigmergy3D01 extends PApplet {
 		background(0, 0, 0);
 		//renderBound();
 		
-		manager.makeColonies();
-		manager.makeAgents();
-		manager.makePhero();
+		manager.runColonies();
+		manager.runAgents();
+		manager.runPhero();
 		
 	}
 	
