@@ -12,7 +12,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/base/core/core.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="http://processing.googlecode.com/svn/trunk/processing/build/javadoc/core"/>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/base/core"/>
 		</attributes>
 	</classpathentry>
@@ -30,6 +29,11 @@
 	<classpathentry kind="lib" path="lib/user/toxiclibscore/toxiclibscore.jar">
 		<attributes>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/user/toxiclibscore"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/user/kd/kd.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://home.wlu.edu/~levys/software/kd/docs"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>

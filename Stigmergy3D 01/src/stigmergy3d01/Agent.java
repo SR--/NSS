@@ -26,12 +26,14 @@ public class Agent {
 		vel = new Vec3D(p5.random(-1, 1), p5.random(-1, 1), p5.random(-1, 1));
 		loc = pos.copy();
 		p5.manager.agents.add(this);
-		
+
 		//control trails
 		dropNum = 0;
 		tr = new Trail(p5, this);;
+
 	}
 
+	// update the agent state (position, movement)
 	void update() {
 		if (PApplet.abs(pos.x) > p5.lmt[0] || PApplet.abs(pos.y) > p5.lmt[1] || PApplet.abs(pos.z) > p5.lmt[2]) alive = false;
 
@@ -59,6 +61,7 @@ public class Agent {
 		tr.update();
 	}
 
+	// look for pheromones and follow
 	public Vec3D track(float s, float v) {
 		// s = sight, v = view/2
 		Vec3D vec = new Vec3D();
@@ -90,6 +93,7 @@ public class Agent {
 		return wand;
 	}
 
+	// make a new pheromone deposit
 	public void make() {
 		boolean able = true;
 		Iterator<Phero> it = p5.manager.pheros.iterator();
@@ -104,8 +108,7 @@ public class Agent {
 	}
 
 	public void render() {
-		tr.renderTrail();
-		//tr.renderAgent();
-
+		tr.renderTrail(); // render the trail left by the agent
+		//tr.renderAgent(); // render the agent itself
 	}
 }
