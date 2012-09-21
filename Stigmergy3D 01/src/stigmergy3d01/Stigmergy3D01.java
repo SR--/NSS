@@ -1,36 +1,32 @@
 package stigmergy3d01;
 
-import java.util.List;
-
 import processing.core.PApplet;
 import peasy.*;
-import toxi.geom.Vec3D;
 
 public class Stigmergy3D01 extends PApplet {
-	
+
 	PeasyCam cam;
-	int[] lmt = {500, 500, 500};
+	int[] lmt = { 600, 400, 500 };
 
 	Manager manager;
-	
-	//stats variables
-	List<Vec3D> ocNodes;
+
+	// stats variables
 	long t0;
 
 	public void setup() {
 		size(900, 600, OPENGL);
-		textFont(createFont("SansSerif",18));
+		textFont(createFont("SansSerif", 18));
 		smooth();
 		colorMode(HSB, 360, 100, 100);
 		cam();
-		
+
 		manager = new Manager(this);
 		manager.reset();
 	}
 
 	public void draw() {
 		background(0, 0, 0);
-		//renderBound();
+		// renderBound();
 
 		t0 = System.nanoTime(); // note current time for the stats
 
@@ -38,11 +34,10 @@ public class Stigmergy3D01 extends PApplet {
 		manager.runAgents();
 		manager.runPhero();
 
-		displayStats();
-		println(frameRate);
+		//displayStats();
 
 	}
-	
+
 	// make and setup camera----------------------------------
 	public void cam() {
 		cam = new PeasyCam(this, 0, 0, 0, 1200);
@@ -51,6 +46,7 @@ public class Stigmergy3D01 extends PApplet {
 		cam.setRotations(-0.73f, -0.27f, 0.30f);
 	}
 
+	// render the bounding box that contains agents-----------
 	private void renderBound() {
 		noFill();
 		stroke(210, 10, 30);
@@ -70,26 +66,26 @@ public class Stigmergy3D01 extends PApplet {
 		}
 	}
 
-	public void keyPressed() {
-		if (key == 'r') manager.reset();
-		if (key == 'f') saveFrame("page-##");
-	}
-	
-	//screen stats-------------------------------------------
-	public void displayStats(){
-		
-		float dt=(float)((System.nanoTime()-t0)*1e-6);
+	// screen stats-------------------------------------------
+	public void displayStats() {
+
+		float dt = (float) ((System.nanoTime() - t0) * 1e-6);
 		cam.beginHUD();
-		text("total agents: "+manager.agents.size(), 10, 30);
-
-		ocNodes = manager.phOctree.getPoints();
-		if(ocNodes != null) {
-			int s = ocNodes.size();
-			text("total octree nodes: "+s, 10, 70);
-		}
-		text("total pheromons: "+manager.pheros.size(), 10, 50);
-
-		text("time: "+nf(dt,1,4)+"ms", 10, 90);
+		text("total agents: " + manager.agents.size(), 10, 30);
+		text("total pheromons: " + manager.pheroKDTree.keySet().size(), 10, 50);
+		text("time: " + nf(dt, 1, 4) + "ms", 10, 70);
 		cam.endHUD();
+
+		if (frameCount % 10 == 0) {
+			println(frameRate);
+		}
+	}
+
+	// user interface-------------------------------------------
+	public void keyPressed() {
+		if (key == 'r')
+			manager.reset();
+		if (key == 'f')
+			saveFrame("page-##");
 	}
 }

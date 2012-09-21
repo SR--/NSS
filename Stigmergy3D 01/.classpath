@@ -27,8 +27,36 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/base/core/core.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="http://processing.googlecode.com/svn/trunk/processing/build/javadoc/core"/>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/base/core"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/user/hemesh/apfloat.jar" sourcepath="C:/Users/srou.UNIMELB/Documents/Processing/libraries/hemesh/src">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/C:/Users/srou.UNIMELB/Documents/Processing/libraries/hemesh/reference/"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/user/hemesh"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/user/hemesh/hemesh.jar" sourcepath="C:/Users/srou.UNIMELB/Documents/Processing/libraries/hemesh/src">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/C:/Users/srou.UNIMELB/Documents/Processing/libraries/hemesh/doc/"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/user/hemesh"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/user/hemesh/javolution-5.5.1.jar" sourcepath="C:/Users/srou.UNIMELB/Documents/Processing/libraries/hemesh/src">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/C:/Users/srou.UNIMELB/Documents/Processing/libraries/hemesh/reference/"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/user/hemesh"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/user/hemesh/quickhull3d.jar" sourcepath="C:/Users/srou.UNIMELB/Documents/Processing/libraries/hemesh/src">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/C:/Users/srou.UNIMELB/Documents/Processing/libraries/hemesh/reference/"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/user/hemesh"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/user/kd/kd.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/user/kd"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/user/peasycam/peasycam.jar" sourcepath="C:/Users/srou.UNIMELB/Documents/Processing/libraries/peasycam/src">
@@ -44,11 +72,9 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/user/toxiclibscore/toxiclibscore.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="http://toxiclibs.org/docs/core/"/>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/user/toxiclibscore"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/user/kd/kd.jar"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>

@@ -2,9 +2,7 @@ package stigmergy3d01;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
 
-import toxi.geom.PointOctree;
 import toxi.geom.Vec3D;
 
 public class Manager {
@@ -13,63 +11,54 @@ public class Manager {
 
 	ArrayList<Colony> colonys;
 	ArrayList<Agent> agents;
-	LinkedList<Phero> pheros;
 
-	// octree dimensions
-	float DIM = 500;
-	float DIM2 = DIM/2;
-	
-	// sphere clip radius
-	float RADIUS = 60;
-	
-	PointOctree phOctree;
-	
-	// ---------*Colony*---------------------------------------------//
+	// H_KDTree
+	H_KDTree pheroKDTree;
 
-	int spawnLocs = 70; //how many locations to initiate agents from?
+	// Colony---------------------------------------------
 
-	// ---------*Agent*---------------------------------------------//
+	int spawnLocs = 70; // how many locations to initiate agents from?
 
-	float sight	= 60f;
+	// Agent---------------------------------------------
+
+	float sight = 60f;
 	float view = 2.2f;
 
-	//agent trail parameters
-	int dropSpacing = 2; //distance between trail points
-	int trailLength  = 200;
+	// agent trail parameters
+	int dropSpacing = 2; // distance between trail points
+	int trailLength = 200;
 
-	// ---------*Pheromone*-----------------------------------------//
+	// Pheromone-----------------------------------------
 
-	float decayRate	= 1.0f;
+	float decayRate = 1.0f;
 	float interval = 25f;
 
 	Manager(Stigmergy3D01 p5) {
-		
+
 		this.p5 = p5;
 		colonys = new ArrayList<Colony>();
 		agents = new ArrayList<Agent>();
-		pheros = new LinkedList<Phero>();
-		
-		phOctree = new PointOctree(new Vec3D(-1,-1,-1).scaleSelf(DIM2),DIM);
-		phOctree.setTreeAutoReduction(true); //Enables/disables auto reduction of branches after points have been deleted
+		pheroKDTree = new H_KDTree(p5);
 
 	}
 
-	// -----------------------------------colony function--------------//
+	// colony function--------------
 
 	public void runColonies() {
 		for (int i = 0; i < colonys.size(); i++) {
 			Colony c = colonys.get(i);
 			c.update();
-			//c.render();
+			// c.render();
 		}
 	}
 
-	// -----------------------------------agent function-----------------//
+	// agent function-----------------
 
 	public void runAgents() {
 		for (int i = 0; i < agents.size(); i++) {
 			Agent a = agents.get(i);
-			if (!a.alive) agents.remove(i);
+			if (!a.alive)
+				agents.remove(i);
 			else {
 				a.update();
 				a.make();
@@ -78,35 +67,36 @@ public class Manager {
 		}
 	}
 
-	// -------------------------------pheromone function---------------//
+	// pheromone function using optimisation (IN THE WORKS)
 	public void runPhero() {
-		Iterator<Phero> itP = pheros.iterator();
+
+		Iterator<Phero> itP = pheroKDTree.keySet().iterator();
 		while (itP.hasNext()) {
 			Phero ph = itP.next();
 			if (!ph.alive) {
-				phOctree.remove(ph.pos);
-				itP.remove();
+				pheroKDTree.remove(ph);
 			} else {
 				ph.decay();
-				//ph.render();
+				ph.render();
 			}
 		}
 	}
-	
+
 	// reset all---------------------------------------------------------
-	
+
 	public void reset() {
 		colonys.clear();
 		agents.clear();
-		pheros.clear();
-		phOctree.empty();
+		pheroKDTree.clear();
 		for (int i = 0; i < spawnLocs; i++) {
-			int x = (int) (p5.random(-(float) (p5.lmt[0] * 0.8f), (float) (p5.lmt[0] * 0.8f)));
-			int y = (int) (p5.random(-(float) (p5.lmt[1] * 0.8f), (float) (p5.lmt[1] * 0.8f)));
-			int z = (int) (p5.random(-(float) (p5.lmt[2] * 0.8f), (float) (p5.lmt[2] * 0.8f)));
+			int x = (int) (p5.random(-(float) (p5.lmt[0] * 0.8f),
+					(float) (p5.lmt[0] * 0.8f)));
+			int y = (int) (p5.random(-(float) (p5.lmt[1] * 0.8f),
+					(float) (p5.lmt[1] * 0.8f)));
+			int z = (int) (p5.random(-(float) (p5.lmt[2] * 0.8f),
+					(float) (p5.lmt[2] * 0.8f)));
 			int n = (int) (p5.random(6, 10));
 			colonys.add(new Colony(p5, new Vec3D(x, y, z), n));
 		}
 	}
-
 }

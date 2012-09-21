@@ -18,9 +18,11 @@ public class Colony {
 
 	public void update() {
 		for (int i = 0; i < agentList.size(); i++) {
-			if (agentList.get(i).alive == false) agentList.remove(i);
+			if (agentList.get(i).alive == false)
+				agentList.remove(i);
 		}
-		if (agentList.size() < count) agentList.add(new Agent(p5, pos.copy()));
+		if (agentList.size() < count)
+			agentList.add(new Agent(p5, pos.copy()));
 	}
 
 	public void render() {
@@ -29,5 +31,3 @@ public class Colony {
 		p5.point(pos.x, pos.y, pos.z);
 	}
 }
-
-
