@@ -61,7 +61,7 @@ public class Agent {
 		tr.update();
 	}
 
-	// look for pheromones and follow
+	/*	// look for pheromones and follow (unoptimized)
 	public Vec3D track(float s, float v) {
 		// s = sight, v = view/2
 		Vec3D vec = new Vec3D();
@@ -85,6 +85,36 @@ public class Agent {
 			vec.limit(maxF);
 		}
 		return vec;
+	}*/
+
+	// look for pheromones and follow (using octree)
+	public Vec3D track(float s, float v) {
+		// s = sight, v = view/2
+		Vec3D vec = new Vec3D();
+		float count = 0.0f;
+
+		ArrayList<Vec3D> points = null;
+		points = p5.manager.phOctree.getPointsWithinSphere(pos, p5.manager.RADIUS);
+
+		if (points != null) {
+			Iterator<Vec3D> it = points.iterator();
+			while (it.hasNext()) {
+				Vec3D cur = it.next();
+
+				Vec3D move = (cur).sub(this.pos);
+				float agl = vel.angleBetween(move, true);
+				if ((agl < v) && (agl > -v)) {
+					vec.addSelf(cur);
+					count++;
+				}
+			}
+			if (count > 0) {
+				vec.scaleSelf(1 / count);
+				vec.subSelf(this.pos);
+				vec.limit(maxF);
+			}
+		}
+		return vec;
 	}
 
 	public Vec3D wander() {
@@ -93,7 +123,7 @@ public class Agent {
 		return wand;
 	}
 
-	// make a new pheromone deposit
+	/*	// make a new pheromone deposit (original and unoptimized)
 	public void make() {
 		boolean able = true;
 		Iterator<Phero> it = p5.manager.pheros.iterator();
@@ -104,6 +134,23 @@ public class Agent {
 		int t = (int) (p5.manager.interval / maxV);
 		if (p5.frameCount % t == 0 && pos.distanceTo(loc) > p5.manager.interval && able) {
 			p5.manager.pheros.add(new Phero(p5, pos.copy()));
+		}
+	}*/
+
+	// make a new pheromone deposit (using octree)
+	public void make() {
+		boolean able = true;
+		Iterator<Phero> it = p5.manager.pheros.iterator();
+		while (it.hasNext() && able) {
+			Phero ph = it.next();
+			if (pos.distanceTo(ph.pos) < 1) able = false;
+		}
+		int t = (int) (p5.manager.interval / maxV);
+		if (p5.frameCount % t == 0 && pos.distanceTo(loc) > p5.manager.interval && able) {
+			Phero curPh = new Phero(p5, pos.copy());
+			p5.manager.pheros.add(curPh);
+			p5.manager.phOctree.addPoint(curPh.pos);
+
 		}
 	}
 

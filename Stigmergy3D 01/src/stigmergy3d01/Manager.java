@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import toxi.geom.PointOctree;
 import toxi.geom.Vec3D;
 
 public class Manager {
@@ -14,6 +15,15 @@ public class Manager {
 	ArrayList<Agent> agents;
 	LinkedList<Phero> pheros;
 
+	// octree dimensions
+	float DIM = 500;
+	float DIM2 = DIM/2;
+	
+	// sphere clip radius
+	float RADIUS = 60;
+	
+	PointOctree phOctree;
+	
 	// ---------*Colony*---------------------------------------------//
 
 	int spawnLocs = 70; //how many locations to initiate agents from?
@@ -36,8 +46,11 @@ public class Manager {
 		
 		this.p5 = p5;
 		colonys = new ArrayList<Colony>();
-		agents	= new ArrayList<Agent>();
+		agents = new ArrayList<Agent>();
 		pheros = new LinkedList<Phero>();
+		
+		phOctree = new PointOctree(new Vec3D(-1,-1,-1).scaleSelf(DIM2),DIM);
+		phOctree.setTreeAutoReduction(true); //Enables/disables auto reduction of branches after points have been deleted
 
 	}
 
@@ -71,6 +84,7 @@ public class Manager {
 		while (itP.hasNext()) {
 			Phero ph = itP.next();
 			if (!ph.alive) {
+				phOctree.remove(ph.pos);
 				itP.remove();
 			} else {
 				ph.decay();
@@ -85,6 +99,7 @@ public class Manager {
 		colonys.clear();
 		agents.clear();
 		pheros.clear();
+		phOctree.empty();
 		for (int i = 0; i < spawnLocs; i++) {
 			int x = (int) (p5.random(-(float) (p5.lmt[0] * 0.8f), (float) (p5.lmt[0] * 0.8f)));
 			int y = (int) (p5.random(-(float) (p5.lmt[1] * 0.8f), (float) (p5.lmt[1] * 0.8f)));
