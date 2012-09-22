@@ -23,9 +23,11 @@ public class Phero extends WB_Point3d {
 	}
 
 	public void decay() {
-		mag -= p5.manager.decayRate;
-		if (mag < 0)
-			alive = false;
+		if (p5.frameCount % 10 == 0) {
+			mag -= p5.manager.decayRate;
+			if (mag < 0)
+				alive = false;
+		}
 	}
 
 	public void render() {

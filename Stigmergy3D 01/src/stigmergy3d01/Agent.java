@@ -74,16 +74,20 @@ public class Agent extends WB_Point3d {
 		Vec3D vec = new Vec3D();
 		float count = 0.0f;
 
-		neighbours = p5.manager.pheroKDTree.getNearestNeighbors(this, 100);
+		neighbours = p5.manager.pheroKDTree.getNearestNeighbors(this, 150, true);
 
 		if (neighbours != null) {
 			for (int i = 0; i < neighbours.length; i++) {
+				
+
 				Phero cur = (Phero) neighbours[i].point();
-				Vec3D move = cur.pos.sub(this.pos);
-				float agl = vel.angleBetween(move, true);
-				if ((agl < v) && (agl > -v)) {
-					vec.addSelf(cur.pos);
-					count++;
+				if(cur.pos.distanceTo(this.pos) < s) {
+					Vec3D move = cur.pos.sub(this.pos);
+					float agl = vel.angleBetween(move, true);
+					if ((agl < v) && (agl > -v)) {
+						vec.addSelf(cur.pos);
+						count++;
+					}
 				}
 			}
 			if (count > 0) {
@@ -96,24 +100,25 @@ public class Agent extends WB_Point3d {
 	}
 
 	public Vec3D wander() {
-		Vec3D wand = new Vec3D(p5.random(-1, 1), p5.random(-1, 1), p5.random(
-				-1, 1));
+		//Vec3D wand = new Vec3D(p5.random(-1, 1), p5.random(-1, 1), p5.random(-1, 1));
+		int i = 0;
+		Vec3D wand = new Vec3D(1+i,1+i,1+i);
+		i++;
 		wand.limit(maxF);
 		return wand;
 	}
 
-	// make a new pheromone deposit (using octree)
+	// make a new pheromone deposit (using kdtree)
 	public void make() {
 		int t = (int) (p5.manager.interval / maxV);
 		if (p5.frameCount % t == 0 && pos.distanceTo(loc) > p5.manager.interval) {
 			Phero curPh = new Phero(p5, pos.copy());
-			String v = curPh.toString();
-			p5.manager.pheroKDTree.put(curPh, v);
+			p5.manager.pheroKDTree.put(curPh, 1);
 		}
 	}
 
 	public void render() {
-		//tr.renderTrail(); // render the trail left by the agent
-		tr.renderAgent(); // render the agent itself
+		tr.renderTrail(); // render the trail left by the agent
+		//tr.renderAgent(); // render the agent itself
 	}
 }

@@ -33,8 +33,11 @@ public class Stigmergy3D01 extends PApplet {
 		manager.runColonies();
 		manager.runAgents();
 		manager.runPhero();
+		if (frameCount % 500 == 0) {
+			manager.pheroKDTree.optimize();
+		}
 
-		//displayStats();
+		displayStats();
 
 	}
 

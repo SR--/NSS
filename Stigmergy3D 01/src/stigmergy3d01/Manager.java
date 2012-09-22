@@ -30,7 +30,7 @@ public class Manager {
 
 	// Pheromone-----------------------------------------
 
-	float decayRate = 1.0f;
+	float decayRate = 5.0f;
 	float interval = 25f;
 
 	Manager(Stigmergy3D01 p5) {
