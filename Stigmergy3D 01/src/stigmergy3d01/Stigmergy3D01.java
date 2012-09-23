@@ -14,9 +14,13 @@ public class Stigmergy3D01 extends PApplet {
 	int[] lmt = {600, 500, 400};
 
 	Manager manager;
+	
+	// stats variables
+	long t0;
 
 	public void setup() {
 		size(900, 600, P3D);
+		textFont(createFont("SansSerif", 18));
 		smooth();
 		colorMode(HSB, 360, 100, 100);
 		cam();
@@ -30,9 +34,13 @@ public class Stigmergy3D01 extends PApplet {
 		background(0, 0, 0);
 		//renderBound();
 		
+		t0 = System.nanoTime(); // note current time for the stats
+		
 		manager.runColonies();
 		manager.runAgents();
 		manager.runPhero();
+		
+		displayStats();
 		
 	}
 	
@@ -60,6 +68,21 @@ public class Stigmergy3D01 extends PApplet {
 			line(0, 0, 0, 0, height / 18, 0); // y
 			stroke(240, 100, 80, t);
 			line(0, 0, 0, 0, 0, height / 18); // z
+		}
+	}
+	
+	// screen stats-------------------------------------------
+	public void displayStats() {
+
+		float dt = (float) ((System.nanoTime() - t0) * 1e-6);
+		cam.beginHUD();
+		text("total agents: " + manager.agents.size(), 10, 30);
+		//text("total pheromons: " + manager.pheroKDTree.keySet().size(), 10, 50);
+		text("time: " + nf(dt, 1, 4) + "ms", 10, 70);
+		cam.endHUD();
+
+		if (frameCount % 10 == 0) {
+			println(frameRate);
 		}
 	}
 
