@@ -6,13 +6,14 @@ import processing.core.PApplet;
 import peasy.*;
 import toxi.geom.Vec3D;
 
+@SuppressWarnings("serial")
 public class Stigmergy3D01 extends PApplet {
-	
+
 	PeasyCam cam;
 	int[] lmt = {500, 500, 500};
 
 	Manager manager;
-	
+
 	//stats variables
 	List<Vec3D> ocNodes;
 	long t0;
@@ -23,26 +24,28 @@ public class Stigmergy3D01 extends PApplet {
 		smooth();
 		colorMode(HSB, 360, 100, 100);
 		cam();
-		
+
 		manager = new Manager(this);
 		manager.reset();
 	}
 
 	public void draw() {
 		background(0, 0, 0);
-		//renderBound();
+		renderBound();
 
 		t0 = System.nanoTime(); // note current time for the stats
 
 		manager.runColonies();
 		manager.runAgents();
-		//manager.runPhero();
+		manager.runPhero();
 
-		displayStats();
-		println(frameRate);
+		//displayStats();
+		if(frameCount % 5 == 0) {
+			println(frameRate);
+		}
 
 	}
-	
+
 	// make and setup camera----------------------------------
 	public void cam() {
 		cam = new PeasyCam(this, 0, 0, 0, 1200);
@@ -74,10 +77,10 @@ public class Stigmergy3D01 extends PApplet {
 		if (key == 'r') manager.reset();
 		if (key == 'f') saveFrame("page-##");
 	}
-	
+
 	//screen stats-------------------------------------------
 	public void displayStats(){
-		
+
 		float dt=(float)((System.nanoTime()-t0)*1e-6);
 		cam.beginHUD();
 		text("total agents: "+manager.agents.size(), 10, 30);

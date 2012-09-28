@@ -22,11 +22,10 @@ public class Agent extends Vec3D {
 	Trail tr;
 	
 	//TO FIX: mess with types - how to force inherited types to be recognised?
-	ArrayList points = null;
+	ArrayList<Vec3D> points = null;
 
 	Agent(Stigmergy3D01 p5, Vec3D pos) {
 		super(pos.x, pos.y, pos.z);
-		//super(pos.copy());
 		this.p5 = p5;
 		this.pos = pos;
 		vel = new Vec3D(p5.random(-1, 1), p5.random(-1, 1), p5.random(-1, 1));
@@ -76,7 +75,7 @@ public class Agent extends Vec3D {
 		points = p5.manager.phOctree.getPointsWithinSphere(this, p5.manager.RADIUS);
 
 		if (points != null) {
-			Iterator<Agent> it = points.iterator();
+			Iterator<Vec3D> it = points.iterator();
 			while (it.hasNext()) {
 				Vec3D cur = it.next();
 

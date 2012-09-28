@@ -2,7 +2,6 @@ package stigmergy3d01;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 import toxi.geom.PointOctree;
@@ -14,13 +13,15 @@ public class Manager {
 
 	ArrayList<Colony> colonys;
 	ArrayList<Agent> agents;
+	
+	// Octree-------------------------------------------------------
 
 	// octree dimensions
-	float DIM = 500;
+	float DIM = 1000.0f;
 	float DIM2 = DIM/2;
 	
 	// sphere clip radius
-	float RADIUS = 40;
+	float RADIUS = 150;
 	
 	PointOctree phOctree;
 	
@@ -49,7 +50,7 @@ public class Manager {
 		agents = new ArrayList<Agent>();
 		
 		phOctree = new PointOctree(new Vec3D(-1,-1,-1).scaleSelf(DIM2),DIM);
-		phOctree.setTreeAutoReduction(true); //Enables/disables auto reduction of branches after points have been deleted
+		//phOctree.setTreeAutoReduction(true); //Enables/disables auto reduction of branches after points have been deleted
 
 	}
 
@@ -78,21 +79,23 @@ public class Manager {
 	}
 
 	// -------------------------------pheromone function---------------//
-	// TO FIX: mess with the types: Octree does nto want to return inheritated objects
-//	public void runPhero() {
-//		
-//		Iterator<Vec3D> itP = phOctree.getPoints().iterator();
-//		while (itP.hasNext()) {
-//			Vec3D ph = itP.next();
-//			if (!ph.alive) {
-//				phOctree.remove(ph);
-//				itP.remove();
-//			} else {
-//				ph.decay();
-//				ph.render();
-//			}
-//		}
-//	}
+	public void runPhero() {
+		List<Vec3D> pts = phOctree.getPoints();
+
+		if(pts != null) {
+			Iterator<Vec3D> itP = pts.iterator();
+			while (itP.hasNext()) {
+				Phero ph = (Phero)itP.next();
+				if (!ph.alive) {
+					phOctree.remove(ph);
+					itP.remove();
+				} else {
+					ph.decay();
+					//ph.render();
+				}
+			}
+		}
+	}
 	
 	// reset all---------------------------------------------------------
 	
