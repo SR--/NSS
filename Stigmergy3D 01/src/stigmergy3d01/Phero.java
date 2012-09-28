@@ -2,7 +2,7 @@ package stigmergy3d01;
 
 import toxi.geom.Vec3D;
 
-public class Phero {
+public class Phero extends Vec3D {
 	
 	Stigmergy3D01 p5;
 	
@@ -11,6 +11,8 @@ public class Phero {
 	boolean	alive	= true;
 
 	Phero(Stigmergy3D01 p5, Vec3D pos) {
+		super(pos.x, pos.y, pos.z);
+		//super(pos.copy());
 		this.p5 = p5;
 		this.pos = pos;
 	}

@@ -36,7 +36,7 @@ public class Stigmergy3D01 extends PApplet {
 
 		manager.runColonies();
 		manager.runAgents();
-		manager.runPhero();
+		//manager.runPhero();
 
 		displayStats();
 		println(frameRate);
@@ -87,7 +87,6 @@ public class Stigmergy3D01 extends PApplet {
 			int s = ocNodes.size();
 			text("total octree nodes: "+s, 10, 70);
 		}
-		text("total pheromons: "+manager.pheros.size(), 10, 50);
 
 		text("time: "+nf(dt,1,4)+"ms", 10, 90);
 		cam.endHUD();

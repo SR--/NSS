@@ -5,7 +5,8 @@ import java.util.Iterator;
 import processing.core.PApplet;
 import toxi.geom.Vec3D;
 
-public class Agent {
+public class Agent extends Vec3D {
+	
 
 	Stigmergy3D01 p5;
 	boolean	alive = true;
@@ -19,8 +20,13 @@ public class Agent {
 	float freetime = 0;
 	float dropNum;
 	Trail tr;
+	
+	//TO FIX: mess with types - how to force inherited types to be recognised?
+	ArrayList points = null;
 
 	Agent(Stigmergy3D01 p5, Vec3D pos) {
+		super(pos.x, pos.y, pos.z);
+		//super(pos.copy());
 		this.p5 = p5;
 		this.pos = pos;
 		vel = new Vec3D(p5.random(-1, 1), p5.random(-1, 1), p5.random(-1, 1));
@@ -61,43 +67,16 @@ public class Agent {
 		tr.update();
 	}
 
-	/*	// look for pheromones and follow (unoptimized)
-	public Vec3D track(float s, float v) {
-		// s = sight, v = view/2
-		Vec3D vec = new Vec3D();
-		float count = 0.0f;
-		Iterator<Phero> it = p5.manager.pheros.iterator();
-		while (it.hasNext()) {
-			Phero ph = it.next();
-			float d = pos.distanceTo(ph.pos);
-			if (d < s) {
-				Vec3D move = (ph.pos).sub(this.pos);
-				float agl = vel.angleBetween(move, true);
-				if ((agl < v) && (agl > -v)) {
-					vec.addSelf(ph.pos);
-					count++;
-				}
-			}
-		}
-		if (count > 0) {
-			vec.scaleSelf(1 / count);
-			vec.subSelf(this.pos);
-			vec.limit(maxF);
-		}
-		return vec;
-	}*/
-
 	// look for pheromones and follow (using octree)
 	public Vec3D track(float s, float v) {
 		// s = sight, v = view/2
 		Vec3D vec = new Vec3D();
 		float count = 0.0f;
 
-		ArrayList<Vec3D> points = null;
-		points = p5.manager.phOctree.getPointsWithinSphere(pos, p5.manager.RADIUS);
+		points = p5.manager.phOctree.getPointsWithinSphere(this, p5.manager.RADIUS);
 
 		if (points != null) {
-			Iterator<Vec3D> it = points.iterator();
+			Iterator<Agent> it = points.iterator();
 			while (it.hasNext()) {
 				Vec3D cur = it.next();
 
@@ -123,33 +102,13 @@ public class Agent {
 		return wand;
 	}
 
-	/*	// make a new pheromone deposit (original and unoptimized)
-	public void make() {
-		boolean able = true;
-		Iterator<Phero> it = p5.manager.pheros.iterator();
-		while (it.hasNext() && able) {
-			Phero ph = it.next();
-			if (pos.distanceTo(ph.pos) < 1) able = false;
-		}
-		int t = (int) (p5.manager.interval / maxV);
-		if (p5.frameCount % t == 0 && pos.distanceTo(loc) > p5.manager.interval && able) {
-			p5.manager.pheros.add(new Phero(p5, pos.copy()));
-		}
-	}*/
-
 	// make a new pheromone deposit (using octree)
 	public void make() {
-		boolean able = true;
-		Iterator<Phero> it = p5.manager.pheros.iterator();
-		while (it.hasNext() && able) {
-			Phero ph = it.next();
-			if (pos.distanceTo(ph.pos) < 1) able = false;
-		}
+
 		int t = (int) (p5.manager.interval / maxV);
-		if (p5.frameCount % t == 0 && pos.distanceTo(loc) > p5.manager.interval && able) {
+		if (p5.frameCount % t == 0 && pos.distanceTo(loc) > p5.manager.interval) {
 			Phero curPh = new Phero(p5, pos.copy());
-			p5.manager.pheros.add(curPh);
-			p5.manager.phOctree.addPoint(curPh.pos);
+			p5.manager.phOctree.addPoint(curPh);
 
 		}
 	}
