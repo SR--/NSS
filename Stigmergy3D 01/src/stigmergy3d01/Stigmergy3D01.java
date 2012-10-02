@@ -1,13 +1,9 @@
 package stigmergy3d01;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-
 import processing.core.PApplet;
 import peasy.*;
-import toxi.geom.Vec3D;
 
+@SuppressWarnings("serial")
 public class Stigmergy3D01 extends PApplet {
 	
 	PeasyCam cam;
