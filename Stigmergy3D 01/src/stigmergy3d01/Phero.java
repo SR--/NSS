@@ -2,19 +2,22 @@ package stigmergy3d01;
 
 import toxi.geom.Vec3D;
 
-public class Phero {
+public class Phero extends Vec3D {
 	
 	Stigmergy3D01 p5;
 	
 	Vec3D	pos;
 	float	mag		= 100f;
 	boolean	alive	= true;
+	String mapCoord;
 
-	Phero(Stigmergy3D01 p5, Vec3D pos) {
+	Phero(Vec3D pos, Stigmergy3D01 p5, String mapCoord) {
+		super(pos);
 		this.p5 = p5;
 		this.pos = pos;
+		this.mapCoord = mapCoord;
 	}
-
+	
 	public void decay() {
 		mag -= p5.manager.decayRate;
 		if (mag < 0) alive = false;

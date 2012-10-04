@@ -59,30 +59,51 @@ public class Agent {
 		tr.update();
 	}
 
-	public Vec3D track(float s, float v) {
-		// s = sight, v = view/2
+//	public Vec3D track(float s, float v) {
+//		// s = sight, v = view/2
+//		Vec3D vec = new Vec3D();
+//		float count = 0.0f;
+//		Iterator<Phero> it = p5.manager.pheros.iterator();
+//		while (it.hasNext()) {
+//			Phero ph = it.next();
+//			float d = pos.distanceTo(ph.pos);
+//			if (d < s) {
+//				Vec3D move = (ph.pos).sub(this.pos);
+//				float agl = vel.angleBetween(move, true);
+//				if ((agl < v) && (agl > -v)) {
+//					vec.addSelf(ph.pos);
+//					count++;
+//				}
+//			}
+//		}
+//		if (count > 0) {
+//			vec.scaleSelf(1 / count);
+//			vec.subSelf(this.pos);
+//			vec.limit(maxF);
+//		}
+//		return vec;
+//	}
+	
+	public Vec3D track (float s, float v) {
 		Vec3D vec = new Vec3D();
+		String tMapCoord = getCoord(pos);
 		float count = 0.0f;
-		Iterator<Phero> it = p5.manager.pheros.iterator();
-		while (it.hasNext()) {
-			Phero ph = it.next();
-			float d = pos.distanceTo(ph.pos);
-			if (d < s) {
-				Vec3D move = (ph.pos).sub(this.pos);
+		if (p5.manager.pheros.getCollection(tMapCoord) != null) {
+			for (Phero p: (ArrayList<Phero>)p5.manager.pheros.getCollection(tMapCoord)) {
+				Vec3D move = (p.pos).sub(this.pos);
 				float agl = vel.angleBetween(move, true);
 				if ((agl < v) && (agl > -v)) {
-					vec.addSelf(ph.pos);
+					vec.addSelf(p);
 					count++;
 				}
 			}
-		}
-		if (count > 0) {
 			vec.scaleSelf(1 / count);
 			vec.subSelf(this.pos);
 			vec.limit(maxF);
 		}
 		return vec;
 	}
+        	  
 
 	public Vec3D wander() {
 		Vec3D wand = new Vec3D(p5.random(-1, 1), p5.random(-1, 1), p5.random(-1, 1));
@@ -91,15 +112,12 @@ public class Agent {
 	}
 
 	public void make() {
-		boolean able = true;
-		Iterator<Phero> it = p5.manager.pheros.iterator();
-		while (it.hasNext() && able) {
-			Phero ph = it.next();
-			if (pos.distanceTo(ph.pos) < 1) able = false;
-		}
 		int t = (int) (p5.manager.interval / maxV);
-		if (p5.frameCount % t == 0 && pos.distanceTo(loc) > p5.manager.interval && able) {
-			p5.manager.pheros.add(new Phero(p5, pos.copy()));
+		if (p5.frameCount % t == 0 && pos.distanceTo(loc) > p5.manager.interval) {
+			Vec3D tPos = pos.copy();
+			String tCoord = getCoord(tPos);
+			Phero p = new Phero(tPos, p5, tCoord);
+			p5.manager.pheros.put(tCoord, p);
 		}
 	}
 
@@ -107,5 +125,10 @@ public class Agent {
 		tr.renderTrail();
 		//tr.renderAgent();
 
+	}
+	
+	String getCoord(Vec3D p){
+		String s = ""+PApplet.floor(p.x/p5.manager.gridRes)+PApplet.floor(p.y/p5.manager.gridRes)+PApplet.floor(p.z/p5.manager.gridRes);
+		return s;
 	}
 }

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import org.apache.commons.collections.map.MultiValueMap;
+
 import toxi.geom.Vec3D;
 
 public class Manager {
@@ -12,7 +14,9 @@ public class Manager {
 
 	ArrayList<Colony> colonys;
 	ArrayList<Agent> agents;
-	LinkedList<Phero> pheros;
+	MultiValueMap pheros;
+
+	int gridRes = 100;
 
 	// ---------*Colony*---------------------------------------------//
 
@@ -33,11 +37,11 @@ public class Manager {
 	float interval = 25f;
 
 	Manager(Stigmergy3D01 p5) {
-		
+
 		this.p5 = p5;
 		colonys = new ArrayList<Colony>();
 		agents	= new ArrayList<Agent>();
-		pheros = new LinkedList<Phero>();
+		pheros = new MultiValueMap();
 
 	}
 
@@ -67,20 +71,23 @@ public class Manager {
 
 	// -------------------------------pheromone function---------------//
 	public void runPhero() {
-		Iterator<Phero> itP = pheros.iterator();
+		Iterator<Phero> itP = pheros.values().iterator();
 		while (itP.hasNext()) {
 			Phero ph = itP.next();
 			if (!ph.alive) {
 				itP.remove();
 			} else {
+				//ph.run(); //this is needed to update th
 				ph.decay();
 				//ph.render();
 			}
 		}
+
 	}
-	
+
+
 	// reset all---------------------------------------------------------
-	
+
 	public void reset() {
 		colonys.clear();
 		agents.clear();

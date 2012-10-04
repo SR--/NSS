@@ -1,12 +1,7 @@
 package stigmergy3d01;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-
 import processing.core.PApplet;
 import peasy.*;
-import toxi.geom.Vec3D;
 
 public class Stigmergy3D01 extends PApplet {
 	
@@ -77,7 +72,7 @@ public class Stigmergy3D01 extends PApplet {
 		float dt = (float) ((System.nanoTime() - t0) * 1e-6);
 		cam.beginHUD();
 		text("total agents: " + manager.agents.size(), 10, 30);
-		//text("total pheromons: " + manager.pheroKDTree.keySet().size(), 10, 50);
+		text("total pheromons: " + manager.pheros.values().size(), 10, 50);
 		text("time: " + nf(dt, 1, 4) + "ms", 10, 70);
 		cam.endHUD();
 
