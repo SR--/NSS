@@ -16,9 +16,11 @@ public class Manager {
 	ArrayList<Agent> agents;
 	MultiValueMap pheros;
 
-	int gridRes = 100;
+	int gridRes = 200;  // resolution of the MultiValueMap, speeds the simulation
+						// but also constrains the length of perception for the
+						// agents
 
-	// ---------*Colony*---------------------------------------------//
+	// Colony---------------------------------------------
 
 	int spawnLocs = 70; //how many locations to initiate agents from?
 
@@ -27,7 +29,7 @@ public class Manager {
 	float sight	= 60f;
 	float view = 2.2f;
 
-	//agent trail parameters
+	// agent trail parameters
 	int dropSpacing = 2; //distance between trail points
 	int trailLength  = 200;
 
@@ -77,7 +79,6 @@ public class Manager {
 			if (!ph.alive) {
 				itP.remove();
 			} else {
-				//ph.run(); //this is needed to update th
 				ph.decay();
 				//ph.render();
 			}

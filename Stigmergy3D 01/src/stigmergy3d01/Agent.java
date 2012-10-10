@@ -58,31 +58,6 @@ public class Agent {
 
 		tr.update();
 	}
-
-//	public Vec3D track(float s, float v) {
-//		// s = sight, v = view/2
-//		Vec3D vec = new Vec3D();
-//		float count = 0.0f;
-//		Iterator<Phero> it = p5.manager.pheros.iterator();
-//		while (it.hasNext()) {
-//			Phero ph = it.next();
-//			float d = pos.distanceTo(ph.pos);
-//			if (d < s) {
-//				Vec3D move = (ph.pos).sub(this.pos);
-//				float agl = vel.angleBetween(move, true);
-//				if ((agl < v) && (agl > -v)) {
-//					vec.addSelf(ph.pos);
-//					count++;
-//				}
-//			}
-//		}
-//		if (count > 0) {
-//			vec.scaleSelf(1 / count);
-//			vec.subSelf(this.pos);
-//			vec.limit(maxF);
-//		}
-//		return vec;
-//	}
 	
 	public Vec3D track (float s, float v) {
 		Vec3D vec = new Vec3D();
@@ -90,16 +65,24 @@ public class Agent {
 		float count = 0.0f;
 		if (p5.manager.pheros.getCollection(tMapCoord) != null) {
 			for (Phero p: (ArrayList<Phero>)p5.manager.pheros.getCollection(tMapCoord)) {
-				Vec3D move = (p.pos).sub(this.pos);
-				float agl = vel.angleBetween(move, true);
-				if ((agl < v) && (agl > -v)) {
-					vec.addSelf(p);
-					count++;
+				float d = pos.distanceTo(p.pos);    // control length of perception
+													// by Euclidean distance as
+													// well as by the grid size,
+													// optional
+				if (d < s) {
+					Vec3D move = (p.pos).sub(this.pos);
+					float agl = vel.angleBetween(move, true);
+					if ((agl < v) && (agl > -v)) {
+						vec.addSelf(p);
+						count++;
+					}
 				}
 			}
-			vec.scaleSelf(1 / count);
-			vec.subSelf(this.pos);
-			vec.limit(maxF);
+			if (count > 0) {
+				vec.scaleSelf(1 / count);
+				vec.subSelf(this.pos);
+				vec.limit(maxF);
+			}
 		}
 		return vec;
 	}

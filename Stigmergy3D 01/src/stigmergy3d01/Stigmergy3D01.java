@@ -14,7 +14,7 @@ public class Stigmergy3D01 extends PApplet {
 	long t0;
 
 	public void setup() {
-		size(900, 600, P3D);
+		size(900, 600, OPENGL);
 		textFont(createFont("SansSerif", 18));
 		smooth();
 		colorMode(HSB, 360, 100, 100);
