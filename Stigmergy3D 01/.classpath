@@ -5,12 +5,12 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/base/opengl"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/base/opengl/jogl.jar" sourcepath="C:/SR_Programs/processing-1.5.1/modes/java/libraries/opengl/src">
+	<classpathentry kind="lib" path="lib/base/opengl/jogl.jar" sourcepath="C:/SR Programs/processing-1.5.1/modes/java/libraries/opengl/library/windows64">
 		<attributes>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/base/opengl"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/base/opengl/opengl.jar" sourcepath="C:/SR_Programs/processing-1.5.1/modes/java/libraries/opengl/src">
+	<classpathentry kind="lib" path="lib/base/opengl/opengl.jar" sourcepath="C:/SR Programs/processing-1.5.1/modes/java/libraries">
 		<attributes>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/base/opengl"/>
 		</attributes>
