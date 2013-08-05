@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="lib" path="lib/base/opengl/gluegen-rt.jar" sourcepath="C:/SR_Programs/processing-1.5.1/modes/java/libraries/opengl/src">
+	<classpathentry kind="lib" path="C:/Users/srou/git/NSS/Stigmergy3D 01/lib/base/opengl/gluegen-rt.jar" sourcepath="C:/SR_Programs/processing-1.5.1/modes/java/libraries/opengl/src">
 		<attributes>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/base/opengl"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/base/opengl/jogl.jar" sourcepath="C:/SR Programs/processing-1.5.1/modes/java/libraries/opengl/library/windows64">
+	<classpathentry kind="lib" path="C:/Users/srou/git/NSS/Stigmergy3D 01/lib/base/opengl/jogl.jar" sourcepath="C:/SR Programs/processing-1.5.1/modes/java/libraries/opengl/library/windows64">
 		<attributes>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/base/opengl"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/base/opengl/opengl.jar" sourcepath="C:/SR Programs/processing-1.5.1/modes/java/libraries">
+	<classpathentry kind="lib" path="C:/Users/srou/git/NSS/Stigmergy3D 01/lib/base/opengl/opengl.jar" sourcepath="C:/SR Programs/processing-1.5.1/modes/java/libraries">
 		<attributes>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/base/opengl"/>
 		</attributes>
@@ -30,31 +30,31 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/base/core"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/user/hemesh/apfloat.jar" sourcepath="C:/Users/srou.UNIMELB/Documents/Processing/libraries/hemesh/src">
+	<classpathentry kind="lib" path="C:/Users/srou/git/NSS/Stigmergy3D 01/lib/user/hemesh/apfloat.jar" sourcepath="C:/Users/srou.UNIMELB/Documents/Processing/libraries/hemesh/src">
 		<attributes>
 			<attribute name="javadoc_location" value="file:/C:/Users/srou.UNIMELB/Documents/Processing/libraries/hemesh/reference/"/>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/user/hemesh"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/user/hemesh/hemesh.jar" sourcepath="C:/Users/srou.UNIMELB/Documents/Processing/libraries/hemesh/src">
+	<classpathentry kind="lib" path="C:/Users/srou/git/NSS/Stigmergy3D 01/lib/user/hemesh/hemesh.jar" sourcepath="C:/Users/srou.UNIMELB/Documents/Processing/libraries/hemesh/src">
 		<attributes>
 			<attribute name="javadoc_location" value="file:/C:/Users/srou.UNIMELB/Documents/Processing/libraries/hemesh/doc/"/>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/user/hemesh"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/user/hemesh/javolution-5.5.1.jar" sourcepath="C:/Users/srou.UNIMELB/Documents/Processing/libraries/hemesh/src">
+	<classpathentry kind="lib" path="C:/Users/srou/git/NSS/Stigmergy3D 01/lib/user/hemesh/javolution-5.5.1.jar" sourcepath="C:/Users/srou.UNIMELB/Documents/Processing/libraries/hemesh/src">
 		<attributes>
 			<attribute name="javadoc_location" value="file:/C:/Users/srou.UNIMELB/Documents/Processing/libraries/hemesh/reference/"/>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/user/hemesh"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/user/hemesh/quickhull3d.jar" sourcepath="C:/Users/srou.UNIMELB/Documents/Processing/libraries/hemesh/src">
+	<classpathentry kind="lib" path="C:/Users/srou/git/NSS/Stigmergy3D 01/lib/user/hemesh/quickhull3d.jar" sourcepath="C:/Users/srou.UNIMELB/Documents/Processing/libraries/hemesh/src">
 		<attributes>
 			<attribute name="javadoc_location" value="file:/C:/Users/srou.UNIMELB/Documents/Processing/libraries/hemesh/reference/"/>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/user/hemesh"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/user/kd/kd.jar">
+	<classpathentry kind="lib" path="C:/Users/srou/git/NSS/Stigmergy3D 01/lib/user/kd/kd.jar">
 		<attributes>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Stigmergy3D 01/lib/user/kd"/>
 		</attributes>
